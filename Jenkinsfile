@@ -33,6 +33,7 @@ pipeline {
             }
             steps {
                 // container('docker') {
+
                     sh "docker build -t ${REGISTRY}:${VERSION}-$BUILD_NUMBER ."
                 // }
             }
@@ -42,11 +43,11 @@ pipeline {
                 environment name: 'DEPLOY', value: 'true'
             }
             steps {
-                container('docker') {
+                // container('docker') {
                     withDockerRegistry([credentialsId: "${REGISTRY_CREDENTIAL}", url: ""]) {
-                        sh "docker push ${REGISTRY}:${VERSION}"
+                        sh "docker push ${REGISTRY}:${VERSION}-$BUILD_NUMBER"
                     }
-                }
+                // }
             }
         }
         stage('Kubernetes Deploy') {
