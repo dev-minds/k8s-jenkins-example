@@ -7,12 +7,12 @@ pipeline {
         REGISTRY = 'davidcampos/k8s-jenkins-example'
         REGISTRY_CREDENTIAL = 'dockerhub-davidcampos'
     }
-    agent {
-        kubernetes {
-            defaultContainer 'jnlp'
-            yamlFile 'build.yaml'
-        }
-    }
+    // agent {
+    //     kubernetes {
+    //         defaultContainer 'jnlp'
+    //         yamlFile 'build.yaml'
+    //     }
+    // }
     stages {
         stage('Build') {
             steps {
