@@ -40,15 +40,19 @@ pipeline {
             }
         }
         stage('Docker Publish') {
-            when {
-                environment name: 'DEPLOY', value: 'false'
-            }
+            // when {
+            //     environment name: 'DEPLOY', value: 'false'
+            // }
             steps {
                 // container('docker') {
-                    withDockerRegistry([credentialsId: "${REGISTRY_CREDENTIAL}", url: ""]) {
+                    // withDockerRegistry([credentialsId: "${REGISTRY_CREDENTIAL}", url: ""]) {
+                        
+                    // }
+                // }
+                    withCredentials([usernameColonPassword(credentialsId: 'REGISTRY_CREDENTIAL', variable: 'REGISTRY_CREDENTIAL')]) {
+                        // some block
                         sh "docker push ${REGISTRY}:${VERSION}"
                     }
-                // }
             }
         }
         stage('Kubernetes Deploy') {
