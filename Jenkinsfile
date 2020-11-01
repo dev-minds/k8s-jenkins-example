@@ -33,7 +33,7 @@ pipeline {
             }
             steps {
                 // container('docker') {
-                    sh "docker build -t ${REGISTRY}:${VERSION} ."
+                    sh "docker build -t ${REGISTRY}:${VERSION}-$BUILD_NUMBER ."
                 // }
             }
         }
