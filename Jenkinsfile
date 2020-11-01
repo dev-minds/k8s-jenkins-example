@@ -56,7 +56,7 @@ pipeline {
         }
         stage('Kubernetes Deploy') {
             when {
-                environment name: 'DEPLOY', value: 'true'
+                environment name: 'DEPLOY', value: 'false'
             }
             steps {
                 container('helm') {
