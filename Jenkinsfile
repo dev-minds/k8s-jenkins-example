@@ -4,7 +4,7 @@ pipeline {
         NAME = "${env.BRANCH_NAME == "master" ? "example" : "example-staging"}"
         VERSION = readMavenPom().getVersion()
         DOMAIN = 'localhost'
-        REGISTRY = 'davidcampos/k8s-jenkins-example'
+        REGISTRY = 'phelun/kotlas-ci'
         REGISTRY_CREDENTIAL = 'dockerhub-davidcampos'
     }
     agent any
