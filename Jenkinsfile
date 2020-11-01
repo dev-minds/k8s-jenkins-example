@@ -49,7 +49,7 @@ pipeline {
                     // }
                 // }
                     withCredentials([usernamePassword(credentialsId: 'REGISTRY_CREDENTIAL', passwordVariable: 'reg_passwd', usernameVariable: 'reg_username')]) {
-                        sh "docker login -u $reg_username -p reg_passwd"
+                        sh "docker login -u $reg_username -p $reg_passwd"
                         sh "docker push ${REGISTRY}:${VERSION}"
                     }
             }
