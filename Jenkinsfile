@@ -15,11 +15,17 @@ pipeline {
     //     }
     // }
     stages {
+        // stage('Build') {
+        //     steps {
+        //         container('maven') {
+        //             sh 'mvn package'
+        //         }
+        //     }
+        // }
         stage('Build') {
             steps {
-                container('maven') {
-                    sh 'mvn package'
-                }
+                sh 'docker ps'
+                sh 'mvn package'
             }
         }
         stage('Docker Build') {
