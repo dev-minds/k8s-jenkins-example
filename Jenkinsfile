@@ -1,8 +1,8 @@
 pipeline {
     environment {
         DEPLOY = "${env.BRANCH_NAME == "master" || env.BRANCH_NAME == "develop" ? "true" : "false"}"
-        NAME = "${env.BRANCH_NAME == "master" ? "example" : "example-staging"}"
-        VERSION = readMavenPom().getVersion()
+        NAME = "${env.BRANCH_NAME == "master" ? "prod" : "staging"}"
+        VERSION = "readMavenPom().getVersion()-$BUILD_NUMBER"
         DOMAIN = 'localhost'
         REGISTRY = 'phelun/kotlas-ci'
         REGISTRY_CREDENTIAL = 'dockerhub-davidcampos'
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 // container('docker') {
 
-                    sh "docker build -t ${REGISTRY}:${VERSION}-$BUILD_NUMBER ."
+                    sh "docker build -t ${REGISTRY}:${VERSION} ."
                 // }
             }
         }
@@ -45,7 +45,7 @@ pipeline {
             steps {
                 // container('docker') {
                     withDockerRegistry([credentialsId: "${REGISTRY_CREDENTIAL}", url: ""]) {
-                        sh "docker push ${REGISTRY}:${VERSION}-$BUILD_NUMBER"
+                        sh "docker push ${REGISTRY}:${VERSION}"
                     }
                 // }
             }
