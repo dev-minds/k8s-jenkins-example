@@ -5,12 +5,12 @@
 replicaCount: 1
 
 image:
-  repository: davidcampos/k8s-jenkins-example
-  tag: latest
+  repository: phelun/kotlin_build
+  tag: v0.2
   pullPolicy: Always
 
 imagePullSecrets: []
-name: "example"
+name: "kotlin_1"
 domain: "localhost"
 
 serviceAccount:
