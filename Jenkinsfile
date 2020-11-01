@@ -60,4 +60,10 @@ pipeline {
             }
         }
     }
+    post { 
+        always { 
+            echo 'Im done here, lets clean up workspace'
+            cleanWs()
+        }
+    }
 }
