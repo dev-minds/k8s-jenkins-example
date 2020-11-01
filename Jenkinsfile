@@ -32,9 +32,9 @@ pipeline {
             //     environment name: 'DEPLOY', value: 'true'
             // }
             steps {
-                container('docker') {
+                // container('docker') {
                     sh "docker build -t ${REGISTRY}:${VERSION} ."
-                }
+                // }
             }
         }
         stage('Docker Publish') {
