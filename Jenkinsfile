@@ -2,7 +2,8 @@ pipeline {
     environment {
         DEPLOY = "${env.BRANCH_NAME == "master" || env.BRANCH_NAME == "develop" ? "true" : "false"}"
         NAME = "${env.BRANCH_NAME == "master" ? "prod" : "staging"}"
-        VERSION = readMavenPom().getVersion()"-$BUILD_NUMBER"
+        VERSION_FETCH = readMavenPom().getVersion()
+        VERSION = "${VERSION_FETCH}-${BUILD_NUMBER}"
         DOMAIN = 'localhost'
         REGISTRY = 'phelun/kotlas-ci'
         REGISTRY_CREDENTIAL = 'dockerhub-davidcampos'
