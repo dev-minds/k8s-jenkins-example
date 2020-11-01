@@ -51,6 +51,7 @@ pipeline {
                 // }
                     withCredentials([usernameColonPassword(credentialsId: 'REGISTRY_CREDENTIAL', variable: 'REGISTRY_CREDENTIAL')]) {
                         // some block
+                        sh "docker login"
                         sh "docker push ${REGISTRY}:${VERSION}"
                     }
             }
