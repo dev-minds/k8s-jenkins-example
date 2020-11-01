@@ -28,9 +28,9 @@ pipeline {
             }
         }
         stage('Docker Build') {
-            // when {
-            //     environment name: 'DEPLOY', value: 'true'
-            // }
+            when {
+                environment name: 'DEPLOY', value: 'true'
+            }
             steps {
                 // container('docker') {
                     sh "docker build -t ${REGISTRY}:${VERSION} ."
