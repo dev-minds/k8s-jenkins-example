@@ -46,12 +46,10 @@ pipeline {
             steps {
                 // container('docker') {
                     // withDockerRegistry([credentialsId: "${REGISTRY_CREDENTIAL}", url: ""]) {
-                        
                     // }
                 // }
-                    withCredentials([usernameColonPassword(credentialsId: 'REGISTRY_CREDENTIAL', variable: 'REGISTRY_CREDENTIAL')]) {
-                        // some block
-                        sh "docker login"
+                    withCredentials([usernamePassword(credentialsId: 'REGISTRY_CREDENTIAL', passwordVariable: 'reg_passwd', usernameVariable: 'reg_username')]) {
+                        sh "docker login -u $reg_username -p reg_passwd"
                         sh "docker push ${REGISTRY}:${VERSION}"
                     }
             }
