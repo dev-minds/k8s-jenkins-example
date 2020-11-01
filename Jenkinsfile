@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Docker Build') {
             when {
-                environment name: 'DEPLOY', value: 'true'
+                environment name: 'DEPLOY', value: 'false'
             }
             steps {
                 // container('docker') {
